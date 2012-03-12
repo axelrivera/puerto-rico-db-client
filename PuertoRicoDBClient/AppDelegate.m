@@ -7,25 +7,34 @@
 //
 
 #import "AppDelegate.h"
-
-#import "FirstViewController.h"
-
-#import "SecondViewController.h"
+#import <Parse/Parse.h>
+#import "ExploreViewController.h"
+#import "ProfileViewController.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 
-@synthesize window = _window;
-@synthesize tabBarController = _tabBarController;
+@synthesize window = window_;
+@synthesize tabBarController = tabBarController_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[Parse setApplicationId:@"3eOmZ1mWgDayndD29mPyuH4wNEVYkws9XEhJps71" 
+				  clientKey:@"w7Lt6nBl0RdFTWuD9Cm41bxWhamDCmERGOq9uZVY"];
+	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-	UIViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
-	UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+	
+	UIViewController *exploreController = [[ExploreViewController alloc] initWithNibName:@"ExploreViewController" bundle:nil];
+	UINavigationController *viewController1 = [[UINavigationController alloc] initWithRootViewController:exploreController];
+	
+	UIViewController *profileController = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil]; 
+	UINavigationController *viewController2 = [[UINavigationController alloc] initWithRootViewController:profileController];
+	
 	self.tabBarController = [[UITabBarController alloc] init];
 	self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
 	self.window.rootViewController = self.tabBarController;
+	
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -50,6 +59,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	[self showLoginScreenIfNecessary];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -70,5 +80,15 @@
 {
 }
 */
+
+- (void)showLoginScreenIfNecessary
+{
+	NSLog(@"Checking for Login Screen");
+	if ([PFUser currentUser] == nil) {
+		LoginViewController *loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+		UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginController];
+		[self.window.rootViewController presentModalViewController:navController animated:NO];
+	}
+}
 
 @end
