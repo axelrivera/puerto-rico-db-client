@@ -13,6 +13,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
-- (void)showLoginScreenIfNecessary;
+- (void)showLoginScreenIfNecessaryAnimated:(BOOL)animated;
 
 @end

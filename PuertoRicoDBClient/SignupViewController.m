@@ -55,7 +55,8 @@
 		user.username = self.usernameField.text;
 		user.password = self.passwordField.text;
 		
-		[user signUpInBackgroundWithBlock:^(BOOL succedded, NSError *error) {
+		[user signUpInBackgroundWithBlock:^(BOOL succedded, NSError *error)
+		{
 			if (!error) {
 				[self.delegate signupViewControllerDidFinish:self];
 			} else {

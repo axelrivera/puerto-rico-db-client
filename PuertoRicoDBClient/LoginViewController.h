@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RLUserManager.h"
 #import "SignupViewController.h"
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate, SignupViewControllerDelegate>
+@interface LoginViewController : UIViewController <UITextFieldDelegate, RLUserManagerDelegate, SignupViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;

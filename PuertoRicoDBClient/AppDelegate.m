@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "RLUserManager.h"
 #import "ExploreViewController.h"
 #import "ProfileViewController.h"
 #import "LoginViewController.h"
@@ -21,6 +22,11 @@
 {
 	[Parse setApplicationId:@"3eOmZ1mWgDayndD29mPyuH4wNEVYkws9XEhJps71" 
 				  clientKey:@"w7Lt6nBl0RdFTWuD9Cm41bxWhamDCmERGOq9uZVY"];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(userLoggedOut:)
+												 name:RLUserManagerDidLogOutNotification
+											   object:nil];
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -59,7 +65,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-	[self showLoginScreenIfNecessary];
+	[self showLoginScreenIfNecessaryAnimated:NO];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -81,14 +87,24 @@
 }
 */
 
-- (void)showLoginScreenIfNecessary
+- (void)userLoggedOut:(NSNotification *)notification
+{
+	[self showLoginScreenIfNecessaryAnimated:YES];
+}
+
+- (void)showLoginScreenIfNecessaryAnimated:(BOOL)animated
 {
 	NSLog(@"Checking for Login Screen");
-	if ([PFUser currentUser] == nil) {
+	if ([RLUserManager currentUser] == nil) {
 		LoginViewController *loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
 		UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginController];
-		[self.window.rootViewController presentModalViewController:navController animated:NO];
+		[self.window.rootViewController presentModalViewController:navController animated:animated];
 	}
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:RLUserManagerDidLogOutNotification object:nil];
 }
 
 @end

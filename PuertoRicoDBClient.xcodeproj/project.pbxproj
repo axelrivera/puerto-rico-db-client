@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		162865BC154211780008DD89 /* RLUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 162865BB154211780008DD89 /* RLUserManager.m */; };
 		165CB66F150AB6C5000D39A1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165CB66D150AB6C5000D39A1 /* LoginViewController.m */; };
 		165CB670150AB6C5000D39A1 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165CB66E150AB6C5000D39A1 /* LoginViewController.xib */; };
 		165CB674150AB6F2000D39A1 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165CB672150AB6F2000D39A1 /* SignupViewController.m */; };
@@ -40,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		162865BA154211780008DD89 /* RLUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = RLUserManager.h; sourceTree = "<group>"; };
+		162865BB154211780008DD89 /* RLUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLUserManager.m; sourceTree = "<group>"; };
 		165CB66C150AB6C5000D39A1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		165CB66D150AB6C5000D39A1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		165CB66E150AB6C5000D39A1 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 		165CB668150AB63E000D39A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				162865BA154211780008DD89 /* RLUserManager.h */,
+				162865BB154211780008DD89 /* RLUserManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 				16F6AD60150AA2C200463C54 /* MapViewController.m in Sources */,
 				165CB66F150AB6C5000D39A1 /* LoginViewController.m in Sources */,
 				165CB674150AB6F2000D39A1 /* SignupViewController.m in Sources */,
+				162865BC154211780008DD89 /* RLUserManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

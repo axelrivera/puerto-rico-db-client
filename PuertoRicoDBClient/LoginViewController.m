@@ -7,10 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
-@interface LoginViewController ()
-
-@end
+#import <Parse/Parse.h>
 
 @implementation LoginViewController
 
@@ -52,7 +49,9 @@
 
 - (IBAction)loginAction:(id)sender
 {
-	
+	[[RLUserManager sharedManager] loginWithUsername:self.usernameField.text
+										 andPassword:self.passwordField.text
+											delegate:self];
 }
 
 - (IBAction)passwordAction:(id)sender
@@ -72,6 +71,19 @@
 - (void)signupViewControllerDidFinish:(SignupViewController *)controller
 {
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - RLUserManager Delegate Methods
+
+- (void)userDidLogin:(PFUser *)user
+{
+	NSLog(@"Login: %@", user);
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)user:(PFUser *)user didFailLoginWithError:(NSError *)error
+{
+	NSLog(@"%@", error);
 }
 
 @end

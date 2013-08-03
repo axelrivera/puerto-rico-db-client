@@ -7,7 +7,7 @@
 //
 
 #import "ProfileViewController.h"
-#import <Parse/Parse.h>
+#import "RLUserManager.h"
 
 @interface ProfileViewController ()
 
@@ -51,7 +51,7 @@
 
 - (void)logoutAction:(id)sender
 {
-	[PFUser logOut];
+	[[RLUserManager sharedManager] logOut];
 }
 
 #pragma mark - Table view data source
